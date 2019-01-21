@@ -9,7 +9,7 @@ export default Component.extend({
 
   currentPlace: null,
 
-  didReceiveAttrs() {
+  init() {
     this._super(...arguments);
 
     const initialValue = get(this, 'initialValue');
@@ -17,6 +17,15 @@ export default Component.extend({
       set(this, 'value', initialValue);
     }
   },
+
+  // didReceiveAttrs() {
+  //   this._super(...arguments);
+  //
+  //   const initialValue = get(this, 'initialValue');
+  //   if (initialValue) {
+  //     set(this, 'value', initialValue);
+  //   }
+  // },
 
   didInsertElement() {
     this._super(...arguments);
@@ -50,17 +59,17 @@ export default Component.extend({
       set(this, 'value', value);
     },
 
+    clear() {
+      this.update({});
+    },
+
     onFocusOut() {
       const currentValue = get(this, 'value');
       const currentPlace = get(this, 'currentPlace');
-      const update = get(this, 'update');
 
-      if (currentValue === '') {
-        update({});
-      }
-
-      if (currentPlace && currentPlace.name !== currentValue) {
-        update({});
+      if ((currentValue === '') ||
+          (currentPlace && currentPlace.name !== currentValue)) {
+        this.clear();
       }
     },
   },
