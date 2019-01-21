@@ -1,13 +1,16 @@
 {
   "name": "ember-gov-location",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.1.0",
+  "description": "Ember cli addon with location-related components and utilities.",
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "repository": "https://github.com/govolunteer/ember-gov-location",
   "license": "MIT",
-  "author": "",
+  "author": {
+    "name": "Marc Altmann",
+    "email": "marcaltmann@posteo.de"
+  },
   "directories": {
     "doc": "doc",
     "test": "tests"
