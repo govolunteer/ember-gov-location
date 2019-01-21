@@ -1,0 +1,1 @@
+export { default } from 'ember-gov-location/components/places-autocomplete';
