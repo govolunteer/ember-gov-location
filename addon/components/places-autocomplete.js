@@ -4,7 +4,7 @@ import { get, set } from '@ember/object';
 
 export default Component.extend({
   layout,
-  tagName: '',
+  classNames: ['c-places-autocomplete'],
   value: '',
 
   currentPlace: null,
@@ -28,7 +28,7 @@ export default Component.extend({
       componentRestrictions,
     };
 
-    const input = this.element;
+    const input = this.element.children.item(0);
 
     try {
       const autocomplete = new google.maps.places.Autocomplete(input, options);
