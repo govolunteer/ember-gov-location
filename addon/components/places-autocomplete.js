@@ -60,7 +60,7 @@ export default Component.extend({
     },
 
     clear() {
-      this.update({});
+      get(this, 'update')({});
     },
 
     onFocusOut() {
@@ -69,7 +69,7 @@ export default Component.extend({
 
       if ((currentValue === '') ||
           (currentPlace && currentPlace.name !== currentValue)) {
-        this.clear();
+        get(this, 'clear')();
       }
     },
   },
