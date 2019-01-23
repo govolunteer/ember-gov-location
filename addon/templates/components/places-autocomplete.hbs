@@ -5,8 +5,8 @@
   placeholder={{placeholder}}
   tabindex={{tabindex}}
   disabled={{disabled}}
-  onclick={{action "update" value="target.value"}}
+  onclick={{action (mut value) target.value}}
   onBlur={{action "onFocusOut"}}
   onFocusOut={{action "onFocusOut"}}
-  enter={{action "update" value="target.value"}}
+  enter={{action (mut value) target.value}}
 >
