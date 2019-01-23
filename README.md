@@ -22,7 +22,11 @@ ember install ember-gov-location
 Usage
 ------------------------------------------------------------------------------
 
-[Longer description of how to use the addon in apps.]
+### Options:
+
+**option**             | **description**
+---                    | ---                 |
+inputClass             | additional class for the input element
 
 
 License
