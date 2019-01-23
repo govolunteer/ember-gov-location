@@ -1,3 +1,3 @@
-import { generateLocationObject } from './utils/generate-location-object';
+import generateLocationObject from './utils/generate-location-object';
 
 export { generateLocationObject };
