@@ -1,10 +1,10 @@
 <input
   value={{value}}
-  id="place-input"
+  id={{inputId}}
   class="c-places-autocomplete__input {{inputClass}}"
+  tabindex={{inputTabindex}}
   placeholder={{placeholder}}
-  tabindex={{tabindex}}
-  disabled={{disabled}}
+  disabled={{if inputDisabled "disabled"}}
   onclick={{action (mut value) target.value}}
   onBlur={{action "onFocusOut"}}
   onFocusOut={{action "onFocusOut"}}

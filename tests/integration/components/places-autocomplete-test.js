@@ -28,8 +28,29 @@ module('Integration | Component | places-autocomplete', function(hooks) {
     assert.equal(actual,expected);
   });
 
+  test('it renders inputId attribute', async function(assert) {
+    await render(hbs`{{places-autocomplete inputId="dummy-id"}}`);
+    const actual = this.element.querySelector('input').id;
+    const expected = 'dummy-id';
+    assert.equal(actual, expected);
+  });
+
   test('it renders inputClass attribute', async function(assert) {
     await render(hbs`{{places-autocomplete inputClass="dummy-class"}}`);
     assert.ok(this.element.querySelector('input').classList.contains('dummy-class'));
+  });
+
+  test('it renders inputTabindex attribute', async function(assert) {
+    await render(hbs`{{places-autocomplete inputTabindex="1"}}`);
+    const actual = this.element.querySelector('input').getAttribute('tabindex');
+    const expected = '1';
+    assert.equal(actual, expected);
+  });
+
+  test('it renders inputDisabled attribute', async function(assert) {
+    await render(hbs`{{places-autocomplete inputDisabled=true}}`);
+    const actual = this.element.querySelector('input').disabled;
+    const expected = true;
+    assert.equal(actual, expected);
   });
 });

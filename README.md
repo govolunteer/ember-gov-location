@@ -26,7 +26,15 @@ Usage
 
 **option**             | **description**
 ---                    | ---                 |
-inputClass             | additional class for the input element
+initialValue           | Initial value of the input, set only at component creation (string)
+inputId                | id for input element (string)
+inputClass             | additional class for input element (string)
+inputTabindex          | tabindex value for input element (string)
+inputDisabled          | whether input element is disabled (bool, optional)
+placeholder            | placeholder attribute for input element (string)
+update                 | update callback that receives the Google Places suggestion object (func)
+types                  | types option for Google Places API (string)
+restrictions           | componentRestrictions for Google Places API (string)
 
 
 License
