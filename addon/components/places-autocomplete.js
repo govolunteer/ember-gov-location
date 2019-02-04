@@ -1,35 +1,26 @@
 import Component from '@ember/component';
 import layout from '../templates/components/places-autocomplete';
+import { get, set } from '@ember/object';
+import { isPresent } from '@ember/utils';
 
 export default Component.extend({
   layout,
   classNames: ['c-places-autocomplete'],
   value: '',
-
   currentPlace: null,
 
   init() {
     this._super(...arguments);
-
-    const initialValue = this.get('initialValue');
-    if (initialValue) {
-      this.set('value', initialValue);
+    let initialValue = get(this, 'initialValue');
+    if (isPresent(initialValue)) {
+      set(this, 'value', initialValue);
     }
   },
-
-  // didReceiveAttrs() {
-  //   this._super(...arguments);
-  //
-  //   const initialValue = get(this, 'initialValue');
-  //   if (initialValue) {
-  //     set(this, 'value', initialValue);
-  //   }
-  // },
 
   didInsertElement() {
     this._super(...arguments);
 
-    const componentRestrictions = this.get('restrictions');
+    let componentRestrictions = get(this, 'restrictions');
 
     const options = {
       types: ['geocode'],
@@ -39,12 +30,14 @@ export default Component.extend({
     const input = this.element.children.item(0);
 
     try {
-      const autocomplete = new google.maps.places.Autocomplete(input, options);
-      autocomplete.addListener('place_changed', () => {
-        const place = autocomplete.getPlace();
-        this.get('update')(place);
-        this.set('currentPlace', place);
+      let autocomplete = new google.maps.places.Autocomplete(input, options);
+      let listener = autocomplete.addListener('place_changed', () => {
+        let place = autocomplete.getPlace();
+        set(this, 'currentPlace', place);
+        get(this, 'update')(place);
       });
+      // We need to remove the listener later.
+      set(this, 'autoCompleteListener', listener);
     } catch(e) {
       if (e.name === 'ReferenceError') {
         console.error('\'google\' reference not found. No internet connection?');
@@ -52,16 +45,23 @@ export default Component.extend({
     }
   },
 
+  willDestroyElement() {
+    let listener = get(this, 'autoCompleteListener');
+    if (isPresent(listener)) {
+      listener.remove();
+    }
+  },
+
   actions: {
     onFocusOut() {
-      const currentValue = this.get('value');
-      const currentPlace = this.get('currentPlace');
+      let currentValue = get(this, 'value');
+      let currentPlace = get(this, 'currentPlace');
 
       if (currentValue === '' ||
           currentPlace && currentPlace.name !== currentValue) {
-        this.set('value', '');
-        this.set('currentPlace', null);
-        this.get('update')(null);
+        set(this, 'value', '');
+        set(this, 'currentPlace', null);
+        get(this, 'update')(null);
       }
     },
   },
