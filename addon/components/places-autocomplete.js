@@ -9,7 +9,7 @@ export default Component.extend({
   value: '',
   currentPlace: null,
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
     let initialValue = get(this, 'initialValue');
     if (isPresent(initialValue)) {
@@ -54,11 +54,7 @@ export default Component.extend({
 
   actions: {
     onFocusOut() {
-      let currentValue = get(this, 'value');
-      let currentPlace = get(this, 'currentPlace');
-
-      if (currentValue === '' ||
-          currentPlace && currentPlace.name !== currentValue) {
+      if (get(this, 'value') === '') {
         set(this, 'value', '');
         set(this, 'currentPlace', null);
         get(this, 'update')(null);
