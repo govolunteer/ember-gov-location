@@ -12,9 +12,7 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
     let initialValue = get(this, 'initialValue');
-    if (isPresent(initialValue)) {
-      set(this, 'value', initialValue);
-    }
+    set(this, 'value', initialValue || '');
   },
 
   didInsertElement() {
