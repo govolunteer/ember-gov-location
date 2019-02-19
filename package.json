@@ -1,6 +1,6 @@
 {
   "name": "ember-gov-location",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Ember cli addon with location-related components and utilities.",
   "keywords": [
     "ember-addon"
