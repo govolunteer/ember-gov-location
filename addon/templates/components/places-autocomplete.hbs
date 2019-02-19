@@ -1,12 +1,11 @@
-<input
-  class="c-places-autocomplete__input {{inputClass}}"
-  disabled={{if inputDisabled "disabled"}}
-  enter={{action (mut value) target.value}}
-  id={{inputId}}
-  onBlur={{action "onFocusOut"}}
-  onclick={{action (mut value) target.value}}
-  onFocusOut={{action "onFocusOut"}}
-  placeholder={{placeholder}}
-  tabindex={{inputTabindex}}
-  value={{value}}
->
+{{input
+  class=(concat "c-places-autocomplete__input" inputClass)
+  disabled=(if inputDisabled "disabled")
+  enter=(action (mut value) target.value)
+  id=this.inputId
+  onclick=(action (mut value) target.value)
+  focus-out=(action "checkClearField")
+  placeholder=this.placeholder
+  tabindex=this.inputTabindex
+  value=value
+}}

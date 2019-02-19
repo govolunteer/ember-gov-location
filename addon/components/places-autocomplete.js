@@ -51,7 +51,7 @@ export default Component.extend({
   },
 
   actions: {
-    onFocusOut() {
+    checkClearField() {
       if (get(this, 'value') === '') {
         set(this, 'value', '');
         set(this, 'currentPlace', null);
